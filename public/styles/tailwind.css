@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    body{
+        background-image: linear-gradient(
+            to top right,
+            #A555EC 0%,
+            #A555EC 40%,
+            #e7e9ff 40%,
+            #e7e9ff 100%
+
+        );
+    }
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    font-family: 'Inter Tight', sans-serif;
+    opacity: 1; /* Firefox */
+}
+    
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    font-family: 'Inter Tight', sans-serif;
+}
+    
+::-ms-input-placeholder { /* Microsoft Edge */
+    font-family: 'Inter Tight', sans-serif;
+}
+
+input:checked + div {  
+    @apply border-blue-500;  
+  }  
+  input:checked + div svg {  
+    @apply block;  
+  }

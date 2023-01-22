@@ -1,0 +1,31 @@
+<%-include("./partials/header")-%>
+    <main class="flex flex-col space-y-12">
+      <h1 class="text-white font-bold text-center text-4xl bg-purple-500 py-2 px-16 rounded-md mt-16 min-w-[400px]"><%= heading %></h1>
+      <div class="flex flex-col divide-y divide-slate-200 bg-white shadow-2xl rounded-md">
+
+        <% for (var i=0; i<itemsList.length; i++){ %>
+          <div class="flex justify-between mb-0">
+            <form class="flex mb-0" action="/checked" method="post">
+              <% if (itemsList[i].value === true){ %>
+                <input type="checkbox" onChange="this.form.submit()" name="checkbox" id="" class="mx-4 my-5 rounded-lg bg-indigo-100 focus:ring-0 accent-purple-500 text-purple-500 hover:bg-purple-400 peer" checked value=<%= itemsList[i]._id %>></input>
+              <% }else{ %>
+                <input type="checkbox" onChange="this.form.submit()" name="checkbox" id="" class="mx-4 my-5 rounded-lg bg-indigo-100 focus:ring-0 accent-purple-500 text-purple-500 hover:bg-purple-400 peer" value=<%= itemsList[i]._id %>></input>
+              <% } %>
+              <label class="min-w-[200px] font-kulim-park peer-checked:line-through decoration-purple-500 decoration-2 text-gray-700 my-auto"><%= itemsList[i].name %></label>
+              <input type="hidden" name="heading" value=<%= heading %>></input>  
+            </form>
+            <form class="flex items-center mb-0" action="/delete" method="post">
+              <input type="hidden" name="heading" value=<%= heading %>></input>
+              <button class="mr-2" type="submit" name="delete" value=<%= itemsList[i]._id %>><img class="w-6 max-w-none transition hover:scale-125 ease-in-out duration-300" src="./images/icons8-delete.svg" alt=""></button>
+            </form>
+          </div>
+        <% } %>
+
+
+        <form action="/" method="post" class="mb-2">
+          <input class="w-[80%] mx-4 focus:ring-0 border-0 focus:border-b-2 focus:border-purple-500 font-kulim-park placeholder:text-center" type="text" name="newItem" id="" placeholder="New Item" autocomplete="off">
+          <button class="bg-purple-500 py-1 px-3 text-2xl font-bold text-white rounded-full font-kulim-park mt-2" type="submit" name="button" value=<%= heading %>>+</button>
+        </form>
+      </div>
+    </main>
+<%-include("./partials/footer")-%>
